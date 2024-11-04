@@ -122,12 +122,19 @@
 		WHERE TODO_NO = #{todoNo}
 	</delete>
 	
+	<!--  전체 할일 개수 조회 -->
+	<select id="getTotalCount" resultType="_int">
+		SELECT COUNT(*) FROM TB_TODO
+	</select>
 	
 	
-	
-	
-	
-	
+	<!-- ajax 상세정보 삭제 -->
+	<delete id="todoDelete" parameterType="_int">
+  		DELETE FROM TB_TODO
+  		WHERE TODO_NO = #{todoNo} 
+  	</delete>
+
+
 	
 	
 

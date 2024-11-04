@@ -91,5 +91,24 @@ public interface TodoMapper {
 	 */
 	int deleteDetail(Todo todo);
 
+
+	
+	/** 전체 할 일 개수 조회
+	 * @return
+	 */
+	int getTotalCount();
+
+
+
+
+	/** ajax 할 일 삭제
+	 * @param todoNo
+	 * @return
+	 */
+	int todoDelete(int todoNo);
+
+
+
+
 	
 }

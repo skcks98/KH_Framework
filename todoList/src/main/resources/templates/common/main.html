@@ -9,6 +9,8 @@
 <body>
   <h1>Todo List</h1>
 
+  <h3><a href="/ajax/main">TodoList - Ajax 버전</a></h3>
+
   <p th:text="${testTitle}">todoNo가 1인 할 일 제목 조회</p>
 
   <form action="/todo/add" method="POST">
@@ -49,7 +51,7 @@
         
         <!-- <p th:text="${iterStat}"></p> VarStatus같은 현재 가지고 있는 형태 --> 
         <td th:text="${iterStat.count}">행 번호</td>
-        <td th:text="${iterStat.count}">할 일 번호</td>
+        <td th:text="*{todoNo}">할 일 번호</td>
         <td><a th:href="@{/todo/detail(todoNo=*{todoNo})}"
            th:text="*{todoTitle}">할 일 제목</a>
           </td>
