@@ -17,9 +17,9 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.extern.slf4j.Slf4j;
 
 /*
- *  @SessionAttributes( { "key", "key", "key" ...})
- *  - Model에 추가된 속성 중
- *  
+ * @SessionAttributes( {"key", "key", "key" ...} )
+ * - Model에 추가된 속성 중
+ *   key값이 일치하는 속성을 session scope로 변경
  * 
  * */
 
