@@ -13,4 +13,8 @@ public interface MemberMapper {
 	 */
 	Member login(String memberEmail);
 
+	
+	 /** 이메일 중복 검사 SQL 실행 */
+	int checkEmail(String memberEmail);
+
 }
