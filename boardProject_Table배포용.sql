@@ -69,11 +69,23 @@ FROM "MEMBER"
 WHERE MEMBER_EMAIL ='user01@kh.or.kr'
 AND MEMBER_DEL_FL = 'N';
 
+------------------------------------------
+-- 이메일 중복 검사
+
+SELECT COUNT(*)
+FROM "MEMBER"
+WHERE MEMBER_DEL_FL ='N'
+AND MEMBER_EMAIL = 'user02@kh.or.kr';
+-- 0이 조회 : 중복 X (해당 이메일 사용중인 회원 없음) -> 이용 가능
+-- 1이 조회 : 중복 O (해당 이메일 사용중인 회원 있음) -> 이용 불가능
 
 
 
-
-
+-- 닉네임 중복 검사
+SELECT COUNT(*)
+FROM "MEMBER"
+WHERE MEMBER_DEL_FL ='N'
+AND MEMBER_NICKNAME  = '유저일';
 
 
 
