@@ -40,6 +40,15 @@ public class FileConfig implements WebMvcConfigurer{
 	// 요청 주소에 따라
 	// 서버 컴퓨터의 어떤 경로에 접근할 지 설정
 	
+	//0------------------------------------------------------------
+	
+	@Value("${my.profile.resource-handler}")
+	private String profileResourceHandler;
+	
+	@Value("${my.profile.resource-location}")
+	private String profileResourceLocation;
+	
+	
 	@Override
 	public void addResourceHandlers(ResourceHandlerRegistry registry) {
 		// ResourceHandlerRegistry
@@ -56,6 +65,9 @@ public class FileConfig implements WebMvcConfigurer{
 		// 클라이언트가 /myPage/file/** 패턴으로 이미지를 요청할 때
 		// 서버 폴더 경로 중 file:///C:/uploadFiles/test/ 로 연결하겠다.
 		
+		registry
+		.addResourceHandler(profileResourceHandler) // /myPage/profile/**
+		.addResourceLocations(profileResourceLocation); // / file:///C:/uploadFiles/profile/
 	}
 	
 	
