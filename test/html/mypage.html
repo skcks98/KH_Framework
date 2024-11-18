@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Community 마이페이지</title>
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/test/css/mypage.css">
+
+
+
+</head>
+
+
+
+<body>
+
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container-fluid">
+                <button class="btn d-lg-none mobile-menu-btn">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <a href="#" class="logo">
+                    <i class="fas fa-book-reader"></i>
+                    BookCommunity
+                </a>
+                <div class="top-nav ms-auto d-none d-lg-flex">
+                    <a href="#" class="nav-link">홈</a>
+                    <a href="#" class="nav-link">도서목록</a>
+                    <a href="#" class="nav-link">랭킹</a>
+                    <a href="#" class="nav-link">커뮤니티</a>
+                    <a href="#" class="nav-link login-btn ms-3">유저 123</a> <!-- 로그인 되면 user123으로 변경-->
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main>
+        <div class="container">
+            <div class="layout">
+                <!-- 사이드바 -->
+                <div class="sidebar">
+                    <ul class="sidebar-menu">
+                        <li><button class="active" data-tab="profile">내 정보</button></li>
+
+                        <li><button data-tab="liked-books">찜한 도서 목록</button></li>
+                        <li><button data-tab="reviews">작성한 게시글 목록</button></li>
+                        <li><button data-tab="comments">작성한 댓글 목록</button></li>
+                        <li><button data-tab="password">비밀번호 변경</button></li>
+                    </ul>
+                </div>
+
+                <!-- 메인 컨텐츠 -->
+                <div class="main-content">
+                    <!-- 프로필 섹션 -->
+                    <div id="profile" class="content-section">
+                        <div class="profile-section">
+                            <div class="profile-image">
+                                <img src="/api/placeholder/120/120" alt="프로필 이미지">
+                            </div>
+                            <h2>User123</h2>
+                            <p>안녕하세요 신입독서인 입니다~~</p>
+                            <div class="profile-stats">
+                                <div class="stat-box">
+                                    <div class="stat-number">00</div>
+                                    <div class="stat-label">도서 리뷰 수</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-number">00</div>
+                                    <div class="stat-label">작성한 게시글</div>
+                                </div>
+                                <div class="stat-box">
+                                    <div class="stat-number">00</div>
+                                    <div class="stat-label">읽은 도서</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 찜한 도서 섹션 -->
+                    <div id="liked-books" class="content-section hidden">
+                        <h2>내가 찜한 도서 목록</h2>
+                        <div class="book-grid">
+                            <div class="book-card">
+                                <div class="rank-badge">1</div>
+                                <img src="/api/placeholder/120/170" alt="Book cover" class="book-cover">
+                                <div class="book-info">
+                                    <div class="book-title">아침의 문</div>
+                                    <div class="book-author">
+                                        <i class="fas fa-pen-nib me-2"></i> 김작가
+                                    </div>
+                                    <div class="book-stats">
+                                        <div class="stat-item">
+                                            <i class="fas fa-star"></i> <span>4.8</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-comment"></i> <span>1,234</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-heart"></i> <span>5,678</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- book2 -->
+                            <div class="book-card">
+                                <div class="rank-badge">2</div>
+                                <img src="/api/placeholder/120/170" alt="Book cover" class="book-cover">
+                                <div class="book-info">
+                                    <div class="book-title">겨울의 노래</div>
+                                    <div class="book-author">
+                                        <i class="fas fa-pen-nib me-2"></i>
+                                        이은솔
+                                    </div>
+                                    <div class="book-stats">
+                                        <div class="stat-item">
+                                            <i class="fas fa-star"></i>
+                                            <span>4.7</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-comment"></i>
+                                            <span>987</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-heart"></i>
+                                            <span>4,321</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- book3 -->
+                            <div class="book-card">
+                                <div class="rank-badge">3</div>
+                                <img src="/api/placeholder/120/170" alt="Book cover" class="book-cover">
+                                <div class="book-info">
+                                    <div class="book-title">별들의 도시</div>
+                                    <div class="book-author">
+                                        <i class="fas fa-pen-nib me-2"></i>
+                                        박하늘
+                                    </div>
+                                    <div class="book-stats">
+                                        <div class="stat-item">
+                                            <i class="fas fa-star"></i>
+                                            <span>4.6</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-comment"></i>
+                                            <span>856</span>
+                                        </div>
+                                        <div class="stat-item">
+                                            <i class="fas fa-heart"></i>
+                                            <span>3,987</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <!-- 내가 작성한 게시글 목록 섹션 -->
+                    <div id="reviews" class="content-section hidden">
+                        <div class="board-header">
+                            <h2 class="board-title">내가 작성한 게시글 목록</h2>
+
+                            <!-- 검색 바 추가 -->
+                            <div class="search-bar">
+                                <select class="search-select">
+                                    <option value="title">제목</option>
+                                    <option value="author">작성자</option>
+                                    <option value="all">제목+내용</option>
+                                </select>
+                                <input type="text" class="search-input" placeholder="검색어를 입력하세요">
+                                <button class="search-button">검색</button>
+                            </div>
+                        </div>
+
+                        <!-- 게시글 테이블 -->
+                        <table class="notice-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%">구분</th>
+                                    <th style="width: 50%">제목</th>
+                                    <th style="width: 15%">작성자</th>
+                                    <th style="width: 15%">작성일</th>
+                                    <th style="width: 10%">조회수</th>
+                                </tr>
+                            </thead>
+                            <tbody id="noticeList">
+                                <!-- 공지사항 목록이 여기에 동적으로 추가됨 -->
+                            </tbody>
+                        </table>
+
+                        <!-- 페이지네이션 -->
+                        <div class="pagination">
+                            <button class="page-button">이전</button>
+                            <button class="page-button active">1</button>
+                            <button class="page-button">2</button>
+                            <button class="page-button">3</button>
+                            <button class="page-button">4</button>
+                            <button class="page-button">5</button>
+                            <button class="page-button">다음</button>
+                        </div>
+                    </div>
+
+
+                    <!-- 댓글 목록 섹션 -->
+                    <div id="comments" class="content-section hidden">
+                        <div class="board-header">
+                            <h2 class="board-title">내가 작성한 댓글 목록</h2>
+
+                            <!-- 검색 바 추가 -->
+                            <div class="search-bar">
+                                <select class="search-select">
+                                    <option value="title">제목</option>
+                                    <option value="author">작성자</option>
+                                    <option value="all">제목+내용</option>
+                                </select>
+                                <input type="text" class="search-input" placeholder="검색어를 입력하세요">
+                                <button class="search-button">검색</button>
+                            </div>
+                        </div>
+
+                        <!-- 댓글 테이블 -->
+                        <table class="comment-table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10%">구분</th>
+                                    <th style="width: 50%">제목</th>
+                                    <th style="width: 15%">작성자</th>
+                                    <th style="width: 15%">작성일</th>
+                                    <th style="width: 10%">조회수</th>
+                                </tr>
+                            </thead>
+                            <tbody id="commentList">
+                                <!-- 댓글 목록이 여기에 동적으로 추가됨 -->
+                            </tbody>
+                        </table>
+
+                        <!-- 페이지네이션 -->
+                        <div class="pagination">
+                            <button class="page-button">이전</button>
+                            <button class="page-button active">1</button>
+                            <button class="page-button">2</button>
+                            <button class="page-button">3</button>
+                            <button class="page-button">4</button>
+                            <button class="page-button">5</button>
+                            <button class="page-button">다음</button>
+                        </div>
+                    </div>
+
+
+
+                    <!-- 비밀번호 변경 섹션 -->
+                    <div id="password" class="content-section hidden">
+                        <form class="password-form">
+                            <h2>비밀번호 변경</h2>
+                            <div class="form-group">
+                                <label>현재 비밀번호</label>
+                                <input type="password" name="currentPassword">
+                            </div>
+                            <div class="form-group">
+                                <label>새 비밀번호</label>
+                                <input type="password" name="newPassword">
+                            </div>
+                            <div class="form-group">
+                                <label>새 비밀번호 확인</label>
+                                <input type="password" name="confirmPassword">
+                            </div>
+                            <button type="submit" class="submit-button">수정하기</button>
+                        </form>
+                    </div>
+
+
+                </div>
+
+
+            </div>
+        </div>
+
+    </main>
+
+    <!-- footer-->
+    <footer class="footer">
+        <div class="footer-content">
+            <p class="copyright">© 2024 북커뮤니티. All rights reserved.</p>
+        </div>
+    </footer>
+
+
+
+  
+
+
+
+
+
+
+
+    <!-- JS 연결-->
+    <script src="/test/js/myPage.js"></script>
+</body>
+
+</html>

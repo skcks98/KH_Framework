@@ -1,5 +1,7 @@
 package edu.kh.project.member.model.mapper;
 
+import java.util.List;
+
 import org.apache.ibatis.annotations.Mapper;
 
 import edu.kh.project.member.model.dto.Member;
@@ -32,5 +34,25 @@ public interface MemberMapper {
 	 * @return result
 	 */
 	int signup(Member inputMember);
+
+
+	
+	/** 회원 목록 조회
+	 * @return
+	 */
+	List<Member> getMemberList();
+
+
+	
+	/** 회원 비밀번호 초기화
+	 * @return
+	 */
+	int getResetPw();
+
+
+	/** 회원 탈퇴 복구
+	 * @return
+	 */
+	int getRestorationMember();
 
 }

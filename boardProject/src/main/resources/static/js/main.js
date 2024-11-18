@@ -67,35 +67,6 @@ if(loginEmail != null) {  // 로그인창의 이메일 input 태그가 화면에
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 // 이메일, 비밀번호 미작성 시 로그인  막기
 const loginForm = document.querySelector("#loginForm");
 
@@ -132,3 +103,92 @@ if(loginForm != null){
   });
 
 }
+
+
+// 회원 목록 조회 (비동기)
+
+const selectMemberListBtn = document.querySelector("#selectMemberList");
+selectMemberListBtn.addEventListener("click", () => {
+
+
+fetch("/member/list")
+.then(resp => resp.json())
+.then(memberList => {
+  console.log(memberList); 
+
+// 테이블의 tbody 요소 선택
+  const memberListBody = document.querySelector("#memberList");
+
+  memberListBody.innerHTML = "";
+
+  memberList.forEach(member => {
+    const row = document.createElement("tr"); // 새 행 생성
+
+  // 회원 번호 셀 생성
+  const memberNo = document.createElement("td");
+  memberNo.textContent = member.memberNo; // 회원 번호 삽입
+  row.appendChild(memberNo);
+
+  // 이메일 셀 생성
+  const email = document.createElement("td");
+  email.textContent = member.memberEmail; // 이메일 삽입
+  row.appendChild(email);
+
+  // 닉네임 셀 생성
+  const nickname = document.createElement("td");
+  nickname.textContent = member.memberNickname; // 닉네임 삽입
+  row.appendChild(nickname);
+
+  // 탈퇴 여부 셀 생성
+  const delFl = document.createElement("td");
+  delFl.textContent = member.memberDelFl === 'Y' ? 'Y' : 'N '; // 탈퇴 여부 확인
+  row.appendChild(delFl);
+
+  // 생성한 행을 tbody에 추가
+  memberListBody.appendChild(row);
+  });
+
+
+  })
+  .catch(error => {
+    console.error("Error:", error); // 오류 처리
+  });
+});
+
+
+
+// 특정 회원 비밀번호 초기화(Ajax)
+
+const resetPwBtn = document.querySelector("#resetPw");
+
+
+
+resetPwBtn.addEventListener("click", e => {
+  fetch("/member/resetPassword")
+  .then(resp => resp.json())
+  .then(memberNo => {
+    console.log(memberNo); 
+
+
+
+
+  });
+});
+
+
+
+// 특정 회원 탈퇴 복구(Ajax)
+
+const restoration = document.querySelector("#restorationBtn");
+
+restoration.addEventListener("click", e => {
+  fetch("/member/restoration")
+  .then(resp => resp.json())
+  .then(memberDelFl => {
+    console.log(memberDelFl); 
+
+
+
+
+  });
+});

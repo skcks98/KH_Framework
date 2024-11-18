@@ -1,10 +1,11 @@
 package edu.kh.project.member.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -199,8 +200,71 @@ public class MemberController {
 	}
 	
 	
+	// 회원 목록 조회
+	@ResponseBody
+	@GetMapping("/list")
+	public List<Member> MemberList(Model model){
+		List<Member> memberList = service.getMemberList();
+		
+		
+		// Add the list to the model
+        model.addAttribute("memberList", memberList);
+   
+		return memberList;
+	}
 	
 	
+	// 특정 회원 비밀번호 초기화(pass01!)
+	@ResponseBody
+	@GetMapping("/resetPassword")
+	public int resetPw(Model model, @RequestParam("memberNo") int memberNo) {
+		
+		int result = service.resetPw(memberNo);
+		
+		
+		
+		model.addAttribute("memberNo", memberNo);
+		   
+		String message = null;
+		if(result >0) {
+			message = "성공";
+		} else {
+			message = "실패";
+		}
+		
+		
+		
+		return result;
+		
+	}
+	
+	
+	
+	
+	// 특정 회원 탈퇴 복구(Ajax)
+
+	@ResponseBody
+	@GetMapping("/restoration")
+	public int resetorationMember(Model model, @RequestParam("memberNo") int memberNo) {
+		
+		int result = service.resetorationMember(memberNo);
+		
+		
+		
+		model.addAttribute("memberNo", memberNo);
+		   
+		String message = null;
+		if(result >0) {
+			message = "성공";
+		} else {
+			message = "실패";
+		}
+		
+		
+		
+		return result;
+		
+	}
 	
 	
 	
