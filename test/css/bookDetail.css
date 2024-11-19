@@ -1,0 +1,172 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #4F46E5;
+  --secondary-color: #6B7280;
+  --accent-color: #818CF8;
+  --light-bg: #F3F4F6;
+  --dark-text: #1F2937;
+  --sidebar-width: 280px;
+}
+
+
+
+
+body {
+  display: flex;
+  flex-direction: column; /* 중심축 방향 세로 */
+  align-items: center;    /* 교차축 방향 가운데 정렬 */
+  min-height: 100vh;      /* 최소 높이를 화면 비율 100% */ 
+  font-family: 'Segoe UI', 'Arial', sans-serif;
+  background-color: #F9FAFB;
+
+  margin: 0;
+}
+
+
+
+
+/* 헤더 Styles */
+header {
+  position: relative; /* 기본값으로 설정하여 문서 흐름 유지 */
+  width: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  padding: 1rem 2rem;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+  z-index: 100;
+}
+
+.logo {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--primary-color);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logo i {
+  font-size: 1.8rem;
+}
+
+.top-nav .nav-link {
+  color: var(--dark-text);
+  font-weight: 500;
+  padding: 0.5rem 1rem;
+  transition: all 0.3s ease;
+  border-radius: 8px;
+}
+
+.top-nav .nav-link:hover {
+  color: var(--primary-color);
+  background-color: var(--light-bg);
+}
+
+.login-btn {
+  background-color: var(--primary-color);
+  color: white !important;
+  padding: 0.5rem 1.5rem !important;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background-color: var(--accent-color);
+  transform: translateY(-1px);
+}
+
+
+/*메인*/
+
+
+
+/* Main 영역을 꽉 채우기 위한 스타일 */
+main {
+  flex: 1;
+  width: 100%;
+  padding: 20px 0; /* 위아래 약간의 공간 추가 */
+  background-color: #f4f4f4;
+}
+
+
+
+.book-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.book-author {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.book-description {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+
+.book-stats p {
+  font-size: 1rem;
+}
+
+.related-books h2 {
+  margin-top: 40px;
+  font-size: 1.8rem;
+}
+
+.related-book-card {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.related-book-card h5 {
+  margin-top: 10px;
+  font-size: 1rem;
+}
+
+
+
+
+
+/* 푸터 ( 하단 ) */
+.footer {
+  background-color: #1f2937; /* 진한 네이비 색상 */
+  color: #ffffff;
+  padding: 1rem 0;
+  width: 100%;
+  position: relative;
+  bottom: 0;
+  margin-top: 3rem;
+}
+
+.footer-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+  text-align: center;
+}
+
+.copyright {
+  font-size: 0.875rem;
+  margin: 0;
+  opacity: 0.8;
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 768px) {
+  .footer {
+      padding: 0.75rem 0;
+  }
+  
+  .copyright {
+      font-size: 0.75rem;
+  }
+}

@@ -20,19 +20,21 @@ body {
   min-height: 100vh;      /* 최소 높이를 화면 비율 100% */ 
   font-family: 'Segoe UI', 'Arial', sans-serif;
   background-color: #F9FAFB;
+
+  margin: 0;
 }
 
 main{
-  width: 1669px;
-  flex-grow: 1;       /* 중심축 방향으로 팽창 */
+  width: 100%;           /* 전체 너비 사용 */
+  max-width: 1669px;     /* 최대 너비 제한 */
+  flex-grow: 1;          /* 남은 공간 차지 */
   min-height: 500px;
+  display: flex;         /* Flexbox 사용 */
+  justify-content: center; /* 가로 중앙 정렬 */
+  padding: 20px;         /* 여백 추가 */
 }
 
-/* 화면 너비가 1140px이 되기 전에 적용할 css */
-/*  == 1140px 이하일 때 적용 */
-@media (max-width : 1140px) {
-  main{ width: 100vw; }
-}
+
 
 
 /* a태그 스타일 지정 */
@@ -98,15 +100,17 @@ header {
 
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 20px;
+  width: 100%;          /* 전체 너비 사용 */
+  max-width: 1600px;    /* container의 최대 너비 */
+  margin: 0;            /* margin 제거 */
+  padding: 0 20px;      /* 좌우 여백만 유지 */
 }
 
 .layout {
   display: flex;
-  
   gap: 30px;
+  width: 100%;         /* 전체 너비 사용 */
+  min-height: 100%;    /* 최소 높이 설정 */
 }
 
 
@@ -276,7 +280,8 @@ th {
   background-color: #1d4ed8;
 }
 
-.notice-table, .comment-table {
+.notice-table,
+.comment-table {
   width: 100%;
   background-color: white;
   border-radius: 12px;
@@ -284,28 +289,34 @@ th {
   overflow: hidden;
 }
 
-.notice-table, .comment-table th,
-.notice-table, .comment-table td {
+.notice-table th,
+.notice-table td,
+.comment-table th,
+.comment-table td {
   padding: 16px;
   text-align: left;
   border-bottom: 1px solid #e5e7eb;
 }
 
-.notice-table, .comment-table th {
-  background-color: #f8fafc;
+.notice-table th,
+.comment-table th {
+  background-color: #4F46E5;
   font-weight: bold;
-  color: #4b5563;
+  color: white;
 }
 
-.notice-table, .comment-table tr:last-child td {
+.notice-table tr:last-child td,
+.comment-table tr:last-child td {
   border-bottom: none;
 }
 
-.notice-table, .comment-table tbody tr {
+.notice-table tbody tr,
+.comment-table tbody tr {
   transition: background-color 0.2s;
 }
 
-.notice-table, .comment-table tbody tr:hover {
+.notice-table tbody tr:hover, 
+.comment-table tbody tr:hover {
   background-color: #f8fafc;
 }
 
@@ -484,6 +495,32 @@ th {
 
   .top-nav {
       display: none;
+  }
+}
+
+/* 반응형 디자인을 위한 미디어 쿼리 */
+@media (max-width: 1700px) {
+  main {
+      max-width: 100%;
+      padding: 20px;
+  }
+  
+  .container {
+      max-width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  .layout {
+      flex-direction: column;
+  }
+  
+  main {
+      padding: 10px;
+  }
+  
+  .container {
+      padding: 0 10px;
   }
 }
 

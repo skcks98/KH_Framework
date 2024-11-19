@@ -25,7 +25,10 @@ document.addEventListener('DOMContentLoaded', function () {
 
   // 기본 섹션 로드
   buttons[0].click();
+
+
 });
+
 
 
 

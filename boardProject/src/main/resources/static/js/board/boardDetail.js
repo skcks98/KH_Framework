@@ -45,7 +45,7 @@ document.querySelector("#boardLike").addEventListener("click", e => {
         likeCheck = likeCheck == 0 ? 1 : 0;
         
         // 6. 하트를 채웠다/비웠다 바꾸기
-        e.target.classList.toggle("fa-regular");
+        e.target.classList.toggle("fa-regular"); // toggle 있으면 빼고 없으면 넣고
         e.target.classList.toggle("fa-solid");
 
         // 7. 게시글 좋아요 수 수정

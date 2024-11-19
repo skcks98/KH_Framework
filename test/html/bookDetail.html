@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>도서 상세 정보 - BookCommunity</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary-color: #4F46E5;
+      --secondary-color: #6B7280;
+      --accent-color: #818CF8;
+      --light-bg: #F3F4F6;
+      --dark-text: #1F2937;
+      --sidebar-width: 200px;
+    }
+
+    /* 기존 스타일 유지 */
+    body {
+      font-family: 'Segoe UI', 'Arial', sans-serif;
+      background-color: #F9FAFB;
+    }
+
+    /* Header, Sidebar 스타일은 기존과 동일 */
+    header {
+      position: relative;
+      /* 기본값으로 설정하여 문서 흐름 유지 */
+      width: 100%;
+      top: 0;
+      left: 0;
+      right: 0;
+      background: white;
+      padding: 1rem 2rem;
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
+      z-index: 100;
+    }
+
+
+    /* a태그 스타일 지정 */
+    a {
+      text-decoration: none;
+      color: black;
+    }
+
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary-color);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .logo i {
+      font-size: 1.8rem;
+    }
+
+    .top-nav .nav-link {
+      color: var(--dark-text);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      transition: all 0.3s ease;
+      border-radius: 8px;
+    }
+
+    .top-nav .nav-link:hover {
+      color: var(--primary-color);
+      background-color: var(--light-bg);
+    }
+
+    .login-btn {
+      background-color: var(--primary-color);
+      color: white !important;
+      padding: 0.5rem 1.5rem !important;
+      border-radius: 8px;
+      transition: all 0.3s ease;
+    }
+
+    .login-btn:hover {
+      background-color: var(--accent-color);
+      transform: translateY(-1px);
+    }
+
+
+
+
+
+
+    /* 도서 상세 페이지 스타일 */
+    .book-detail-container {
+      margin-left: var(--sidebar-width);
+      padding: 2rem;
+      padding-top: 90px;
+    }
+
+    .book-detail-header {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      margin-bottom: 2rem;
+      width: 100%;
+      /* 컨테이너 너비에 맞춤 */
+    }
+
+    .book-main-info {
+      display: flex;
+      gap: 2rem;
+    }
+
+    .book-cover-large {
+      width: 300px;
+      height: 450px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    }
+
+    .book-info-content {
+      flex: 1;
+    }
+
+    .book-title-large {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--dark-text);
+      margin-bottom: 1rem;
+    }
+
+    .book-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .meta-item {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--secondary-color);
+    }
+
+    .rating-large {
+      font-size: 1.2rem;
+      color: #FFD700;
+      margin-right: 0.5rem;
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 1rem;
+      margin: 2rem 0;
+    }
+
+    .action-btn {
+      padding: 0.75rem 2rem;
+      border-radius: 8px;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: all 0.3s ease;
+    }
+
+    .primary-btn {
+      background-color: var(--primary-color);
+      color: white;
+      border: none;
+    }
+
+    .secondary-btn {
+      background-color: white;
+      color: var(--primary-color);
+      border: 2px solid var(--primary-color);
+    }
+
+    .book-synopsis {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      /* 컨테이너 너비에 맞춤 */
+    }
+
+    .section-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: var(--dark-text);
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--light-bg);
+    }
+
+    .synopsis-content {
+      color: var(--secondary-color);
+      line-height: 1.8;
+      font-size: 1.1rem;
+    }
+
+    .review-section {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      /* 컨테이너 너비에 맞춤 */
+    }
+
+    .review-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+    }
+
+    .review-card {
+      border-bottom: 1px solid var(--light-bg);
+      padding: 1.5rem 0;
+    }
+
+    .review-user {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .review-rating {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: #FFD700;
+      margin-bottom: 0.5rem;
+    }
+
+    .review-text {
+      color: var(--secondary-color);
+      line-height: 1.6;
+    }
+
+    /* review-form 스타일 (추가 필요 시) */
+    .review-form {
+      background: white;
+      border-radius: 15px;
+      padding: 2rem;
+      margin-bottom: 2rem;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+      width: 100%;
+      /* 컨테이너 너비에 맞춤 */
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1rem 0;
+    }
+
+    .tag {
+      background-color: var(--light-bg);
+      color: var(--primary-color);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.9rem;
+    }
+
+    @media (max-width: 1024px) {
+      .book-detail-container {
+        margin-left: 0;
+      }
+
+      .book-main-info {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .book-cover-large {
+        width: 250px;
+        height: 375px;
+      }
+
+      /* 반응형에서 너비 100% 유지 */
+      .book-detail-header,
+      .book-synopsis,
+      .review-form,
+      .review-section {
+        width: 100%;
+      }
+
+
+
+
+
+
+
+
+
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <nav class="navbar navbar-expand-lg navbar-light">
+      <div class="container-fluid">
+        <button class="btn d-lg-none mobile-menu-btn">
+          <i class="fas fa-bars"></i>
+        </button>
+        <a href="#" class="logo">
+          <i class="fas fa-book-reader"></i>
+          BookCommunity
+        </a>
+        <div class="top-nav ms-auto d-none d-lg-flex">
+          <a href="#" class="nav-link">홈</a>
+          <a href="#" class="nav-link">도서목록</a>
+          <a href="#" class="nav-link">랭킹</a>
+          <a href="#" class="nav-link">커뮤니티</a>
+          <a href="#" class="nav-link login-btn ms-3">로그인</a>
+        </div>
+      </div>
+    </nav>
+  </header>
+
+  <div class="book-detail-container">
+    <div class="book-detail-header">
+      <div class="book-main-info">
+        <img src="/api/placeholder/300/450" alt="Book cover" class="book-cover-large">
+        <div class="book-info-content">
+          <h1 class="book-title-large">아침의 문</h1>
+          <div class="book-meta">
+            <div class="meta-item">
+              <i class="fas fa-pen-nib"></i>
+              <span>김작가</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-building"></i>
+              <span>민음사</span>
+            </div>
+            <div class="meta-item">
+              <i class="fas fa-calendar"></i>
+              <span>2024.01.15 출간</span>
+            </div>
+          </div>
+          <div class="rating-large">
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star"></i>
+            <i class="fas fa-star-half-alt"></i>
+            <span style="color: var(--dark-text)">4.8</span>
+            <span style="color: var(--secondary-color)">(1,234개의 평가)</span>
+          </div>
+          <div class="tags">
+            <span class="tag">#현대소설</span>
+            <span class="tag">#성장</span>
+            <span class="tag">#가족</span>
+          </div>
+          <div class="action-buttons">
+            <button class="action-btn primary-btn">
+              <i class="fas fa-book-open"></i>
+              읽기 시작
+            </button>
+            <button class="action-btn secondary-btn">
+              <i class="fas fa-heart"></i>
+              찜하기
+            </button>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="book-synopsis">
+      <h2 class="section-title">책 소개</h2>
+      <div class="synopsis-content">
+        아침의 문은 현대 사회를 살아가는 젊은이들의 고민과 성장을 섬세하게 그려낸 소설입니다.
+        주인공 미래는 대학 졸업 후 자신의 길을 찾아가는 과정에서 여러 난관에 부딪히지만,
+        가족과 친구들의 지지 속에서 점차 자신만의 답을 찾아가게 됩니다.
+        이 작품은 청춘들의 방황과 성장, 그리고 희망을 담아낸 감동적인 이야기입니다.
+      </div>
+    </div>
+
+    <div class="review-form-section"
+      style="margin-top: 2rem; padding: 1.5rem; background: var(--light-bg); border-radius: 12px;">
+      <h3 style="font-size: 1.2rem; font-weight: 600; margin-bottom: 1rem;">리뷰 작성</h3>
+      <form id="reviewForm" class="review-form">
+        <!-- 별점 선택 -->
+        <div class="rating-select" style="margin-bottom: 1rem;">
+          <label style="display: block; margin-bottom: 0.5rem;">별점</label>
+          <div class="star-rating">
+            <i class="far fa-star rating-star" data-rating="1"></i>
+            <i class="far fa-star rating-star" data-rating="2"></i>
+            <i class="far fa-star rating-star" data-rating="3"></i>
+            <i class="far fa-star rating-star" data-rating="4"></i>
+            <i class="far fa-star rating-star" data-rating="5"></i>
+            <input type="hidden" name="rating" id="selectedRating" value="0">
+          </div>
+        </div>
+
+        <!-- 리뷰 텍스트 입력 -->
+        <div class="form-group" style="margin-bottom: 1rem;">
+          <label for="reviewText" style="display: block; margin-bottom: 0.5rem;">리뷰 내용</label>
+          <textarea id="reviewText" name="reviewText" class="form-control" rows="4"
+            style="width: 100%; padding: 0.75rem; border: 1px solid #ddd; border-radius: 8px; resize: vertical;"
+            placeholder="이 책에 대한 생각을 자유롭게 작성해주세요."></textarea>
+        </div>
+
+        <!-- 제출 버튼 -->
+        <button type="submit" class="action-btn primary-btn" style="width: auto;">
+          <i class="fas fa-paper-plane"></i>
+          리뷰 등록
+        </button>
+      </form>
+    </div>
+
+
+
+
+
+
+
+
+
+
+    <div class="review-section">
+      <div class="review-header">
+        <h2 class="section-title">리뷰</h2>
+
+      </div>
+
+      <div class="review-card">
+        <div class="review-user">
+          <img src="/api/placeholder/40/40" alt="User avatar" class="user-avatar">
+          <div>
+            <div style="font-weight: 600;">김독자</div>
+            <div style="color: var(--secondary-color); font-size: 0.9rem;">2024.02.15</div>
+          </div>
+        </div>
+        <div class="review-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <span style="color: var(--dark-text)">5.0</span>
+        </div>
+        <div class="review-text">
+          정말 감동적인 이야기였습니다. 주인공의 성장 과정이 너무나 현실적이면서도
+          희망적이어서 많은 공감이 되었습니다. 특히 가족 간의 관계를 다룬 부분이
+          인상 깊었습니다.
+        </div>
+      </div>
+
+      <div class="review-card">
+        <div class="review-user">
+          <img src="/api/placeholder/40/40" alt="User avatar" class="user-avatar">
+          <div>
+            <div style="font-weight: 600;">박리뷰</div>
+            <div style="color: var(--secondary-color); font-size: 0.9rem;">2024.02.14</div>
+          </div>
+        </div>
+        <div class="review-rating">
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="fas fa-star"></i>
+          <i class="far fa-star"></i>
+          <span style="color: var(--dark-text)">4.0</span>
+        </div>
+        <div class="review-text">
+          전반적으로 좋은 책이었습니다. 다만 중반부의 전개가 다소 느린 감이 있었습니다.
+          하지만 결말은 매우 만족스러웠고, 작가의 문체가 매우 아름다웠습니다.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      const ratingStars = document.querySelectorAll('.rating-star');
+      const selectedRating = document.getElementById('selectedRating');
+      const reviewForm = document.getElementById('reviewForm');
+
+      // 별점 호버 효과
+      ratingStars.forEach(star => {
+        star.addEventListener('mouseover', function () {
+          const rating = this.dataset.rating;
+          updateStars(rating, 'hover');
+        });
+
+        star.addEventListener('mouseout', function () {
+          updateStars(selectedRating.value, 'rated');
+        });
+
+        star.addEventListener('click', function () {
+          const rating = this.dataset.rating;
+          selectedRating.value = rating;
+          updateStars(rating, 'rated');
+        });
+      });
+
+      // 별점 업데이트 함수
+      function updateStars(rating, mode) {
+        ratingStars.forEach(star => {
+          const starRating = star.dataset.rating;
+          if (starRating <= rating) {
+            star.classList.remove('far');
+            star.classList.add('fas');
+            star.style.color = '#FFD700';
+          } else {
+            star.classList.remove('fas');
+            star.classList.add('far');
+            star.style.color = mode === 'hover' ? '#ccc' : '#666';
+          }
+        });
+      }
+
+      // 폼 제출 처리
+      reviewForm.addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        // 별점 검증
+        if (selectedRating.value === '0') {
+          alert('별점을 선택해주세요.');
+          return;
+        }
+
+        // 리뷰 내용 검증
+        const reviewText = document.getElementById('reviewText').value.trim();
+        if (reviewText === '') {
+          alert('리뷰 내용을 입력해주세요.');
+          return;
+        }
+
+        // 여기에 실제 제출 로직 추가
+        console.log('리뷰 제출:', {
+          rating: selectedRating.value,
+          text: reviewText
+        });
+
+        // 폼 초기화
+        reviewForm.reset();
+        selectedRating.value = '0';
+        updateStars(0, 'rated');
+        alert('리뷰가 등록되었습니다.');
+      });
+    });
+
+
+  </script>
