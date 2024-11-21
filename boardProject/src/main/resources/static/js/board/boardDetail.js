@@ -59,7 +59,7 @@ document.querySelector("#boardLike").addEventListener("click", e => {
 
 const updateBtn = document.querySelector("#updateBtn");
 
-if(updateBtn != null) { // 수정 버튼 존재 시
+if(updateBtn != null) { // 수정 버튼 존재 시, 로그인 한 사람인지 아닌지 확인하기 위해
 
     updateBtn.addEventListener("click", () => {
 
@@ -68,7 +68,7 @@ if(updateBtn != null) { // 수정 버튼 존재 시
         // 목표 : /editBoard/1/2001/update?cp=1
         location.href = location.pathname.replace('board', 'editBoard')
                         + "/update"
-                        + location.search;
+                        + location.search; // ?로 시작하는 쿼리 스트링 
     });
 
 }

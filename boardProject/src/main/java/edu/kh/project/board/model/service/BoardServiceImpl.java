@@ -80,7 +80,7 @@ public class BoardServiceImpl implements BoardService{
 
 	// 게시글 상세 조회
 	@Override
-	public Board selectOne(Map<String, Integer> map) {
+	public Board selectOne(Map<String, Integer> map) {	//  Map - boardCode, boardNo 를 실어 보냄
 		
 		// 여러 SQL을 실행하는 방법
 		// 1. 하나의 Service 메서드에서
