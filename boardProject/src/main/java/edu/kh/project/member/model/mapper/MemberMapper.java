@@ -13,7 +13,7 @@ public interface MemberMapper {
 	 * @param memberEmail
 	 * @return
 	 */
-	Member login(String memberEmail);
+	Member login(String memberEmail) throws Exception;
 
 	
 	 /** 이메일 중복 검사 SQL 실행 */
