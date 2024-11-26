@@ -53,6 +53,11 @@ public interface EditBoardMapper {
 	 * @return
 	 */
 	int insertImage(BoardImg img);
+
+
+
+
+	int boardDelete(Map<String, Integer> map);
 	
 	
 	

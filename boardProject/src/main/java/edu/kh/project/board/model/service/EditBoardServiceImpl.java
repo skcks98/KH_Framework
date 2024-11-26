@@ -205,4 +205,13 @@ public class EditBoardServiceImpl implements EditBoardService {
 		return result;
 	}
 
+	
+	
+	// 게시글 삭제
+	@Override
+	public int boardDelete(Map<String, Integer> map) {
+		// TODO Auto-generated method stub
+		return mapper.boardDelete(map);
+	}
+
 }

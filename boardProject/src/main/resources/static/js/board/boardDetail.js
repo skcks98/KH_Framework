@@ -84,7 +84,10 @@ if(deleteBtn != null){
       return;
     }
 
-    const url = location.pathname.replace("board","editBoard") + "/delete"; // /editBoard/1/2000/delete
+    const url = location.pathname.replace("board","editBoard") + "/delete";   // 동기적으로 GET 요청을 보냄
+    // / board/1/2000?cp=1
+    
+    // /editBoard/1/2000/delete
     const queryString = location.search; // ? cp=1
     location.href = url + queryString;
   });
@@ -112,12 +115,12 @@ if(deleteBtn2 != null){
     // cp값을 저장할 input 생성
     const input = document.createElement("input");
     input.type = "hidden";
-    input.name = "cp";
+    input.name = "cp";  // cp
 
     // 쿼리스트링에서 원하는 파라미터 얻어오기
     const params = new URLSearchParams(location.search)
     const cp = params.get("cp");
-    input.value = cp;
+    input.value = cp; // 7
 
     form.append(input);
 

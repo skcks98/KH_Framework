@@ -766,6 +766,21 @@ VALUES( SEQ_COMMENT_NO.NEXTVAL, '부모 2의 자식 1의 자식!!!',
 COMMIT;
 
 
+SELECT SUBSTR(PROFILE_IMG, INSTR(PROFILE_IMG, '/', -1) + 1) "rename"
+FROM "MEMBER"
+WHERE PROFILE_IMG IS NOT NULL
+
+UNION
+
+SELECT CAST(IMG_RENAME AS VARCHAR2(300)) "rename"
+FROM "BOARD_IMG";
+
+-- ORA-12704: 문자 집합이 일치하지 않습니다
+-- MEMBER 테이블의 PROFILE_IMG (VARCHAR2(300))
+-- BOARD_IMG 테이블의 IMG_RENAME (NVARCHAR2(50))
+
+
+
 
 
 ----------------------------------------------------------
