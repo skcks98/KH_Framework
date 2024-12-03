@@ -118,6 +118,7 @@ public class EditBoardServiceImpl implements EditBoardService {
 
 	}
 
+	// 게시글 상세정보 수정
 	@Override
 	public int boardUpdate(Board inputBoard, List<MultipartFile> images, String deleteOrderList) throws Exception {
 
